@@ -7,6 +7,16 @@ Typically you have a text, you work with it, change it. And when you want to sav
 
 When it comes to text-editing tools online we have this problem quite often and want a library to solve that problem on the fly without the need of a human watcher to get in the process.
 
+## How to use it
+
+In Javascript you only need to write
+
+    var merged = Textmerger.get().merge(original, mytext, theirtext);
+    
+In PHP it looks almost the same:
+
+    $merged = Textmerger::get()->merge($original, $mytext, $theirtext);
+
 ## What does Textmerger do?
 
 All 3-way-diffing tools or 3-way-textmerger I found in the internet so far are not capable to solve conflicts. So I needed to build one for myself. It works this way:
