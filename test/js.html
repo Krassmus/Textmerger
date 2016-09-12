@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Testing TextMerger.js</title>
+    <script src="../Textmerger.js"></script>
+    <style>
+        body {
+            font-family: Sans-Serif;
+        }
+        table {
+            margin: 20px;
+        }
+        table > caption {
+            background-color: lightblue;
+            text-align: left;
+            font-size: 1.3em;
+            padding: 5px;
+        }
+        table.failed caption {
+            background-color: #cc6165;
+        }
+        table a {
+            font-size: 0.8em;
+            color: blue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Testing  TextMerger.js</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <td>Successful tests</td>
+                <td id="successful">0</td>
+            </tr>
+            <tr>
+                <td>Failed tests</td>
+                <td id="failed">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Tests</h2>
+
+    <table class="test failed">
+        <caption>Useless merge</caption>
+        <tbody>
+        <tr>
+            <td>Original</td>
+            <td class="original">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Mine</td>
+            <td class="mine">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Theirs</td>
+            <td class="theirs">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Expected Result</td>
+            <td class="expected">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Result</td>
+            <td class="result"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <a onClick="run(this.closest('.test'));">Execute test independently</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <table class="test failed">
+        <caption>Trivial addendum</caption>
+        <tbody>
+        <tr>
+            <td>Original</td>
+            <td class="original">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Mine</td>
+            <td class="mine">Hello World! You rock!</td>
+        </tr>
+        <tr>
+            <td>Theirs</td>
+            <td class="theirs">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Expected Result</td>
+            <td class="expected">Hello World! You rock!</td>
+        </tr>
+        <tr>
+            <td>Result</td>
+            <td class="result"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <a onClick="run(this.closest('.test'));">Execute test independently</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <table class="test failed">
+        <caption>Trivial merge</caption>
+        <tbody>
+        <tr>
+            <td>Original</td>
+            <td class="original">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Mine</td>
+            <td class="mine">Yeah World!</td>
+        </tr>
+        <tr>
+            <td>Theirs</td>
+            <td class="theirs">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Expected Result</td>
+            <td class="expected">Yeah World!</td>
+        </tr>
+        <tr>
+            <td>Result</td>
+            <td class="result"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <a onClick="run(this.closest('.test'));">Execute test independently</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <table class="test failed">
+        <caption>Distinct changes</caption>
+        <tbody>
+        <tr>
+            <td>Original</td>
+            <td class="original">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Mine</td>
+            <td class="mine">Hi World!</td>
+        </tr>
+        <tr>
+            <td>Theirs</td>
+            <td class="theirs">Hello San Dimas!</td>
+        </tr>
+        <tr>
+            <td>Expected Result</td>
+            <td class="expected">Hi San Dimas!</td>
+        </tr>
+        <tr>
+            <td>Result</td>
+            <td class="result"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <a onClick="run(this.closest('.test'));">Execute test independently</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <table class="test failed">
+        <caption>Cumulative changes</caption>
+        <tbody>
+        <tr>
+            <td>Original</td>
+            <td class="original">Hi,</td>
+        </tr>
+        <tr>
+            <td>Mine</td>
+            <td class="mine">Hi, I'm Ras!</td>
+        </tr>
+        <tr>
+            <td>Theirs</td>
+            <td class="theirs">Hi, call me John.</td>
+        </tr>
+        <tr>
+            <td>Expected Result</td>
+            <td class="expected">Hi, I'm Ras! call me John.</td>
+        </tr>
+        <tr>
+            <td>Result</td>
+            <td class="result"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <a onClick="run(this.closest('.test'));">Execute test independently</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <table class="test failed">
+        <caption>Merge deletions</caption>
+        <tbody>
+        <tr>
+            <td>Original</td>
+            <td class="original">Nebbukadnezlaroverloord</td>
+        </tr>
+        <tr>
+            <td>Mine</td>
+            <td class="mine">Nebbukadnezaroverloord</td>
+        </tr>
+        <tr>
+            <td>Theirs</td>
+            <td class="theirs">Nebukadnezlaroverlord</td>
+        </tr>
+        <tr>
+            <td>Expected Result</td>
+            <td class="expected">Nebukadnezaroverlord</td>
+        </tr>
+        <tr>
+            <td>Result</td>
+            <td class="result"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <a onClick="run(this.closest('.test'));">Execute test independently</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <table class="test failed">
+        <caption>Complicated Merging</caption>
+        <tbody>
+        <tr>
+            <td>Original</td>
+            <td class="original">Hey lovely world</td>
+        </tr>
+        <tr>
+            <td>Mine</td>
+            <td class="mine">Hey graceful world</td>
+        </tr>
+        <tr>
+            <td>Theirs</td>
+            <td class="theirs">Hello lovely world!</td>
+        </tr>
+        <tr>
+            <td>Expected Result</td>
+            <td class="expected">Hello graceful world!</td>
+        </tr>
+        <tr>
+            <td>Result</td>
+            <td class="result"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <a onClick="run(this.closest('.test'));">Execute test independently</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <script>
+        function run(test) {
+            var expected;
+            var result = Textmerger.get().merge(
+                    test.querySelector(".original").innerHTML,
+                    test.querySelector(".mine").innerHTML,
+                    test.querySelector(".theirs").innerHTML
+            );
+            test.querySelector(".result").innerHTML = result;
+            expected = test.querySelector(".expected").innerHTML;
+            return expected === result;
+        }
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var tests = document.querySelectorAll(".test");
+            var result, expected;
+            for (var i = 0; i < tests.length; i++) {
+                if (run(tests[i])) {
+                    tests[i].classList.remove("failed");
+                    document.getElementById("successful").innerHTML =
+                            parseInt(document.getElementById("successful").innerHTML, 10) + 1;
+                } else {
+                    tests[i].classList.add("failed");
+                    document.getElementById("failed").innerHTML =
+                            parseInt(document.getElementById("failed").innerHTML, 10) + 1;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
