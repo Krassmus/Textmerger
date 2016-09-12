@@ -23,6 +23,10 @@ This will solve most conflicts very good (better than everything I've seen so fa
 3. In a conflict all changes by person B should be preferred.
 4. Throw an exception when a true conflict happens.
 
+## Dependencies
+
+No dependencies at all - neither for the PHP version nor the Javascript version.
+
 ## License
 
 MIT license for all purposes
