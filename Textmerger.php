@@ -548,6 +548,9 @@ class Textmerger {
         //Make texts smaller
         for($offset = 0; $offset < strlen($original); $offset++) {
             if ($original[$offset] !== $text1[$offset] || $original[$offset] !== $text2[$offset]) {
+                if ($offset > 0) {
+                    $offset--;
+                }
                 break;
             }
         }
@@ -555,7 +558,7 @@ class Textmerger {
         for($backoffset = 0; $backoffset < strlen($original); $backoffset++) {
             if (($original[strlen($original) - 1 - $backoffset] !== $text1[strlen($text1) - 1 - $backoffset])
                     || ($original[strlen($original) - 1 - $backoffset] !== $text2[strlen($text2) - 1 - $backoffset])
-                    || (strlen($original) - 1 - $backoffset <= $offset)) {
+                    || (strlen($original) - $backoffset <= $offset)) {
                 break;
             }
         }

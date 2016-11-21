@@ -10,7 +10,7 @@ require_once __DIR__ . "/../Textmerger.php";
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Testing TextMerger.php</title>
+    <title>Testing Textmerger.php</title>
     <style>
         body {
             font-family: Sans-Serif;
@@ -36,7 +36,7 @@ require_once __DIR__ . "/../Textmerger.php";
 </head>
     <body>
 
-    <h1>Testing  TextMerger.php</h1>
+    <h1>Testing  Textmerger.php</h1>
 
     <table id="resulttable">
         <tbody>
@@ -80,6 +80,13 @@ require_once __DIR__ . "/../Textmerger.php";
         'mine' => "Yeah World!",
         'theirs' => "Hello World!",
         'expected' => "Yeah World!"
+    );
+    $tests[] = array(
+        'title' => "Add in the middle",
+        'original' => "Hello World!",
+        'mine' => "Hello My World!",
+        'theirs' => "Hello World!",
+        'expected' => "Hello My World!"
     );
     $tests[] = array(
         'title' => "Simple deletion",

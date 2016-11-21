@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Testing Textmerger.js</title>
     <script src="../Textmerger.js"></script>
+    <script src="../vendor/underscore-min.js"></script>
     <style>
         body {
             font-family: Sans-Serif;
@@ -129,6 +130,72 @@
         <tr>
             <td>Expected Result</td>
             <td class="expected">Yeah World!</td>
+        </tr>
+        <tr>
+            <td>Result</td>
+            <td class="result"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <a onClick="run(this.closest('.test'));">Execute test independently</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <table class="test failed">
+        <caption>Add in the middle</caption>
+        <tbody>
+        <tr>
+            <td>Original</td>
+            <td class="original">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Mine</td>
+            <td class="mine">Hello My World!</td>
+        </tr>
+        <tr>
+            <td>Theirs</td>
+            <td class="theirs">Hello World!</td>
+        </tr>
+        <tr>
+            <td>Expected Result</td>
+            <td class="expected">Hello My World!</td>
+        </tr>
+        <tr>
+            <td>Result</td>
+            <td class="result"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <a onClick="run(this.closest('.test'));">Execute test independently</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <table class="test failed">
+        <caption>Simple deletions</caption>
+        <tbody>
+        <tr>
+            <td>Original</td>
+            <td class="original">Hello wworld!</td>
+        </tr>
+        <tr>
+            <td>Mine</td>
+            <td class="mine">Hello wworld!</td>
+        </tr>
+        <tr>
+            <td>Theirs</td>
+            <td class="theirs">Hello world!</td>
+        </tr>
+        <tr>
+            <td>Expected Result</td>
+            <td class="expected">Hello world!</td>
         </tr>
         <tr>
             <td>Result</td>

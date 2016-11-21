@@ -381,14 +381,17 @@ Textmerger.prototype.getReplacements = function(original, text1, text2) {
     //Make texts smaller
     for(var offset = 0; offset < original.length; offset++) {
         if (original[offset] !== text1[offset] || original[offset] !== text2[offset]) {
+            if (offset > 0) {
+                offset--;
+            }
             break;
         }
     }
 
-    for(var backoffset = 0; backoffset < original.length; backoffset++) {
+    for(var backoffset = 0; backoffset <= original.length; backoffset++) {
         if ((original[original.length - 1 - backoffset] !== text1[text1.length - 1 - backoffset])
             || (original[original.length - 1 - backoffset] !== text2[text2.length - 1 - backoffset])
-            || (original.length - 1 - backoffset <= offset)) {
+            || (original.length - backoffset <= offset)) {
             break;
         }
     }
@@ -400,7 +403,6 @@ Textmerger.prototype.getReplacements = function(original, text1, text2) {
     var replacements = new Textmerger.ReplacementGroup();
     replacements.replacements[0] = this.getSimpleReplacement(original_trimmed, text1_trimmed, "text1");
     replacements.replacements[1] = this.getSimpleReplacement(original_trimmed, text2_trimmed, "text2");
-
 
     if (!replacements.haveConflicts()) {
         for (var i in replacements.replacements) {
@@ -479,3 +481,4 @@ Textmerger.prototype.getSimpleReplacement = function (original, text, origin) {
     replacement.text = text.substr(text_start, length);
     return replacement;
 };
+
