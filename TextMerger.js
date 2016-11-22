@@ -253,10 +253,8 @@ Textmerger.ReplacementGroup.prototype.breakApart = function (delimiter, original
             replacements.push(repl[j]);
         }
     }
-    replacements.sort(function (a, b) {
-        return a.start >= b.start ? 1 : -1;
-    });
     this.replacements = replacements;
+    this.sort();
 };
 
 Textmerger.ReplacementGroup.prototype.haveConflicts = function () {
@@ -332,8 +330,13 @@ Textmerger.ReplacementGroup.prototype.applyTo = function (text) {
         index_alteration += alteration;
     }
     return text;
-}
+};
 
+Textmerger.ReplacementGroup.prototype.sort = function () {
+    this.replacements.sort(function (a, b) {
+        return a.start > b.start ? 1 : -1;
+    });
+};
 
 
 
@@ -412,6 +415,7 @@ Textmerger.prototype.getReplacements = function(original, text1, text2) {
         if (!Textmerger.replacement_hash) {
             Textmerger.replacement_hash = {};
         }
+        replacements.sort();
         Textmerger.replacement_hash[hash_id] = replacements;
         return replacements;
     }
@@ -442,6 +446,7 @@ Textmerger.prototype.getReplacements = function(original, text1, text2) {
     if (!Textmerger.replacement_hash) {
         Textmerger.replacement_hash = {};
     }
+    replacements.sort();
     Textmerger.replacement_hash[hash_id] = replacements;
     return replacements;
 };

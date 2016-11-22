@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Useless merge",
+    "original": "Hello World!",
+    "mine": "Hello World!",
+    "theirs": "Hello World!",
+    "expected": "Hello World!"
+  },
+  {
+    "title": "Trivial addendum",
+    "original": "Hello World!",
+    "mine": "Hello World! You rock!",
+    "theirs": "Hello World!",
+    "expected": "Hello World! You rock!"
+  },
+  {
+    "title": "Trivial merge",
+    "original": "Hello World!",
+    "mine": "Yeah World!",
+    "theirs": "Hello World!",
+    "expected": "Yeah World!"
+  },
+  {
+    "title": "Add in the middle",
+    "original": "Hello World!",
+    "mine": "Hello My World!",
+    "theirs": "Hello World!",
+    "expected": "Hello My World!"
+  },
+  {
+    "title": "Simple deletion",
+    "original": "Hello wworld!",
+    "mine": "Hello wworld!",
+    "theirs": "Hello world!",
+    "expected": "Hello world!"
+  },
+  {
+    "title": "Distinct changes",
+    "original": "Hello World!",
+    "mine": "Hi World!",
+    "theirs": "Hello San Dimas!",
+    "expected": "Hi San Dimas!"
+  },
+  {
+    "title": "Cumulative changes",
+    "original": "Hi,",
+    "mine": "Hi, I'm Ras!",
+    "theirs": "Hi, call me John.",
+    "expected": "Hi, I'm Ras! call me John."
+  },
+  {
+    "title": "Merge deletions",
+    "original": "Nebbukadnezlaroverloord",
+    "mine": "Nebbukadnezaroverloord",
+    "theirs": "Nebukadnezlaroverlord",
+    "expected": "Nebukadnezaroverlord"
+  },
+  {
+    "title": "Complicated Merging",
+    "original": "Hey lovely world",
+    "mine": "Hey graceful world",
+    "theirs": "Hello lovely world!",
+    "expected": "Hello graceful world!"
+  },
+  {
+    "title": "jbuddha-example",
+    "original": "Twinkle Twinle Little Star\nHow I what you are\nUp the world so high\nLike a diamond in the sky",
+    "mine": "Twinkle Twinle Little Star\nHow I what you are\nUp above the world so high\nLike a diamond in the sky",
+    "theirs": "Twinkle Twinle Little Star\nHow I wonder what you are\nUp the world so high\nLike a diamond in the sky",
+    "expected": "Twinkle Twinle Little Star\nHow I wonder what you are\nUp above the world so high\nLike a diamond in the sky"
+  }
+]

@@ -333,13 +333,6 @@ class TextmergerReplacementGroup implements ArrayAccess, Iterator, Countable{
         return isset($this->replacements[$this->position]);
     }
 
-    public function sort()
-    {
-        usort($this->replacements, function ($a, $b) {
-            return $a->start >= $b->start ? 1 : -1;
-        });
-        $this->rewind();
-    }
 
     public function count()
     {
@@ -449,6 +442,14 @@ class TextmergerReplacementGroup implements ArrayAccess, Iterator, Countable{
             $index_alteration += $alteration;
         }
         return $text;
+    }
+
+    public function sort()
+    {
+        usort($this->replacements, function ($a, $b) {
+            return $a->start >= $b->start ? 1 : -1;
+        });
+        $this->rewind();
     }
 }
 
@@ -576,6 +577,7 @@ class Textmerger {
                 $replacement->start += $offset;
                 $replacement->end += $offset;
             }
+            $replacements->sort();
             self::$replacement_hash[$hash_id] = $replacements;
             return $replacements;
         }
@@ -602,7 +604,7 @@ class Textmerger {
             $replacement->start += $offset;
             $replacement->end += $offset;
         }
-
+        $replacements->sort();
         self::$replacement_hash[$hash_id] = $replacements;
         return $replacements;
     }
