@@ -35,6 +35,13 @@
     "expected": "Hello world!"
   },
   {
+    "title": "Bigger deletion",
+    "original": "Nooooooooooooo!!",
+    "mine": "Noo!!",
+    "theirs": "Nooooooooooooo!!",
+    "expected": "Noo!!"
+  },
+  {
     "title": "Distinct changes",
     "original": "Hello World!",
     "mine": "Hi World!",
@@ -63,10 +70,24 @@
     "expected": "Hello graceful world!"
   },
   {
+    "title": "Paragraph-wide Merging",
+    "original": "Ich bin.\n\nDu bist.\n\nEr/sie/es ist.",
+    "mine": "Ich bin.\n\nDu 1 bist.\n\nEr/sie/es ist.",
+    "theirs": "Ich 2 bin.\n\nDu bist.\n\nEr/sie/es 3 ist.",
+    "expected": "Ich 2 bin.\n\nDu 1 bist.\n\nEr/sie/es 3 ist."
+  },
+  {
     "title": "jbuddha-example",
-    "original": "Twinkle Twinle Little Star\nHow I what you are\nUp the world so high\nLike a diamond in the sky",
-    "mine": "Twinkle Twinle Little Star\nHow I what you are\nUp above the world so high\nLike a diamond in the sky",
-    "theirs": "Twinkle Twinle Little Star\nHow I wonder what you are\nUp the world so high\nLike a diamond in the sky",
-    "expected": "Twinkle Twinle Little Star\nHow I wonder what you are\nUp above the world so high\nLike a diamond in the sky"
+    "original": "Twinkle Twinkle Little Star\nHow I what you are\nUp the world so high\nLike a diamond in the sky",
+    "mine": "Twinkle Twinkle Little Star\nHow I what you are\nUp above the world so high\nLike a diamond in the sky",
+    "theirs": "Twinkle Twinkle Little Star\nHow I wonder what you are\nUp the world so high\nLike a diamond in the sky",
+    "expected": "Twinkle Twinkle Little Star\nHow I wonder what you are\nUp above the world so high\nLike a diamond in the sky"
+  },
+  {
+    "title": "Levenshtein-Test",
+    "original": "One tre four five seven.",
+    "mine": "One thre four five six seven.",
+    "theirs": "One two tree four five seven.",
+    "expected": "One two three four five six seven."
   }
 ]

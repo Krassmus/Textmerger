@@ -72,8 +72,9 @@ Textmerger.Replacement.prototype.applyTo = function (text) {
 Textmerger.Replacement.prototype.isConflictingWith = function (replacement) {
     return (this.start < replacement.end && this.start > replacement.start)
         || (this.end < replacement.end && this.end > replacement.start)
+        || (this.start < replacement.end && this.end > replacement.end)
         || (this.start < replacement.start && this.end > replacement.end)
-        || (this.start === replacement.start && this.end === replacement.end && this.end - this.start > 0);
+        || (this.start === replacement.start && (this.end === replacement.end) && (this.end - this.start > 0));
 };
 
 Textmerger.Replacement.prototype.breakApart = function (delimiter, original) {
@@ -377,24 +378,26 @@ Textmerger.prototype.calculateCursor = function (cursor_position, original, text
 };
 
 Textmerger.prototype.getReplacements = function(original, text1, text2) {
-    var hash_id = Textmerger.hash(original + "___".text1 + "____" + text2);
+    var hash_id = Textmerger.hash(original + "___".text1 + "___" + text2);
     if (Textmerger.replacement_hash && typeof Textmerger.replacement_hash[hash_id] !== "undefined") {
         //return Textmerger.replacement_hash[hash_id];
     }
     //Make texts smaller
     for(var offset = 0; offset < original.length; offset++) {
-        if (original[offset] !== text1[offset] || original[offset] !== text2[offset]) {
+        if ((original[offset] !== text1[offset]) || (original[offset] !== text2[offset])) {
             if (offset > 0) {
-                offset--;
+                //offset--;
             }
             break;
         }
     }
 
     for(var backoffset = 0; backoffset <= original.length; backoffset++) {
-        if ((original[original.length - 1 - backoffset] !== text1[text1.length - 1 - backoffset])
-            || (original[original.length - 1 - backoffset] !== text2[text2.length - 1 - backoffset])
-            || (original.length - backoffset <= offset)) {
+        if ((original[original.length - backoffset - 1] !== text1[text1.length - backoffset - 1])
+            || (original[original.length - backoffset - 1] !== text2[text2.length - backoffset - 1])
+            || (original.length - backoffset <= offset)
+            || (text1.length - backoffset <= offset)
+            || (text2.length - backoffset <= offset)) {
             break;
         }
     }
@@ -453,10 +456,10 @@ Textmerger.prototype.getReplacements = function(original, text1, text2) {
 
 Textmerger.prototype.getSimpleReplacement = function (original, text, origin) {
     replacement = new Textmerger.Replacement(0, 0, "", origin);
-    //replacement.origin = origin;
+    replacement.origin = origin;
     var text_start = 0;
     var text_end = text.length;
-    for(var i = 0; i <= original.length; i++) {
+    for(var i = 0; i <= Math.max(original.length, text.length); i++) {
         if (original[i] !== text[i]) {
             replacement.start = i;
             text_start = i;
@@ -468,7 +471,7 @@ Textmerger.prototype.getSimpleReplacement = function (original, text, origin) {
         }
     }
 
-    for(i = 0; i < original.length; i++) {
+    for(i = 0; i < Math.max(original.length, text.length); i++) {
         if ((original[original.length - 1 - i] !== text[text.length - 1 - i])
             || (original.length - i === replacement.start)) {
             replacement.end = original.length - i;
